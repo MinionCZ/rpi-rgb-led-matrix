@@ -43,7 +43,7 @@ void showPicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int pict
             led_canvas_set_pixel(canvas, x, y, payload[y * 64 * 3 + x * 3] , payload [y * 64 * 3 + x * 3 + 1], payload[y * 64 * 3 + x * 3 + 2]);
         }
     }
-    //canvas = led_matrix_swap_on_vsync(matrix, canvas);
+    canvas = led_matrix_swap_on_vsync(matrix, canvas);
 }
 
 int main(int argc, char **argv) {
@@ -67,7 +67,7 @@ int main(int argc, char **argv) {
 
     fprintf(stderr, "Size: %dx%d. Hardware gpio mapping: %s\n", width, height, options.hardware_mapping);
 
-    for(int i = 0; i <= LOGO; i++){
+    for(int i = FORMULA1; i <= FORMULA2; i++){
       showPicture(offscreen_canvas, matrix, i);
       sleep(5);
     }
