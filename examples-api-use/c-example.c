@@ -42,8 +42,8 @@ void showPicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int pict
         for (int x = 0; x < 64; ++x) {
             led_canvas_set_pixel(canvas, x, y, payload[y * 64 * 3 + x * 3] , payload [y * 64 * 3 + x * 3 + 1], payload[y * 64 * 3 + x * 3 + 2]);
         }
-        canvas = led_matrix_swap_on_vsync(matrix, canvas);
     }
+    //canvas = led_matrix_swap_on_vsync(matrix, canvas);
 }
 
 int main(int argc, char **argv) {
