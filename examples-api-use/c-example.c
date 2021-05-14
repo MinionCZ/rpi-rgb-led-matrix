@@ -69,6 +69,7 @@ int main(int argc, char **argv) {
 
     for(int i = 0; i <= LOGO; i++){
       showPicture(offscreen_canvas, matrix, i);
+      sleep(5);
     }
 
     led_matrix_delete(matrix);
