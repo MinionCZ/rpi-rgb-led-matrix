@@ -31,12 +31,6 @@ int *getPicture(int picture) {
             return (int *)&formula3[0][0];
         case FORMULA4:
             return (int *)&formula4[0][0];
-        case FORMULA5:
-            return (int *)&formula5[0][0];
-            case KUBA:
-            return (int *)&kuba[0][0];
-        case LOGO:
-            return (int *)&logo[0][0];
     }
     return NULL;
 }
