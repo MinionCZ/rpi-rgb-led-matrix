@@ -51,6 +51,7 @@ void animatePicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int p
               frame[y][anima * 3 - x * 3] = payload[y * 64 * 3 + x * 3];
               frame[y][anima * 3 - x * 3 + 1] = payload[y * 64 * 3 + x * 3 + 1];
               frame[y][anima * 3 - x * 3 + 2] = payload[y * 64 * 3 + x * 3 + 2];
+              fprintf(stdout, "%d %d\r\n", anima * 3 - x * 3, y * 64 * 3 + x * 3);
             }
         }
           for(int y = 0; y < 64; y++){
