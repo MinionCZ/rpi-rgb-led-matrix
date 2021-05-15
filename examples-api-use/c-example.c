@@ -48,10 +48,11 @@ void animatePicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int p
         }
         for(int y = 0; y < 64; y++){
             for(int x = anima; x >= 0; x--){
-              frame[y][anima * 3 - x * 3] = payload[y * 64 * 3 + x * 3];
-              frame[y][anima * 3 - x * 3 + 1] = payload[y * 64 * 3 + x * 3 + 1];
-              frame[y][anima * 3 - x * 3 + 2] = payload[y * 64 * 3 + x * 3 + 2];
-              
+              int xDisplay = anima * 3 - x *3;
+              frame[y][xDisplay] = payload[y * 64 * 3 + x * 3];
+              frame[y][xDisplay + 1] = payload[y * 64 * 3 + x * 3 + 1];
+              frame[y][xDisplay + 2] = payload[y * 64 * 3 + x * 3 + 2];
+              fprintf(stdout, "%d %d\r\n", anima, xDisplay);
             }
         }
           for(int y = 0; y < 64; y++){
@@ -59,7 +60,7 @@ void animatePicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int p
                 led_canvas_set_pixel(canvas, x, y, frame[y][x * 3], frame[y][x * 3 + 1], frame[y][x * 3 + 2]);
             }
         }
-        fprintf(stdout, "%d %d\r\n", anima);
+        
       canvas = led_matrix_swap_on_vsync(matrix, canvas);
       sleep(1);
 
