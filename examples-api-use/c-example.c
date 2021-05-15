@@ -28,7 +28,7 @@ int *getPicture(int picture) {
         case FORMULA2:
             return (int *)&formula2[0][0];
         case FORMULA3:
-            return (int *)&formula3[0][0];
+            return (int *)&formula5[0][0];
         case FORMULA4:
             return (int *)&formula4[0][0];
     }
