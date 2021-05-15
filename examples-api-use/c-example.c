@@ -12,6 +12,7 @@
 #include "images/formula3.h"
 #include "images/formula4.h"
 #include "images/formula5.h"
+#include "images/kuba.h"
 #include "images/logo.h"
 #include "led-matrix-c.h"
 enum {
@@ -20,6 +21,7 @@ enum {
     FORMULA3,
     FORMULA4,
     FORMULA5,
+    KUBA,
 };
 int *getPicture(int picture) {
     switch (picture) {
@@ -33,6 +35,8 @@ int *getPicture(int picture) {
             return (int *)&formula4[0][0];
         case FORMULA5:
             return (int *)&formula5[0][0];
+            case KUBA:
+            return (int *)&kuba[0][0];
     }
     return NULL;
 }
@@ -97,7 +101,7 @@ int main(int argc, char **argv) {
 
     fprintf(stderr, "Size: %dx%d. Hardware gpio mapping: %s\n", width, height, options.hardware_mapping);
 
-    for (int i = FORMULA1; i <= FORMULA5; i++) {
+    for (int i = FORMULA1; i <= KUBA; i++) {
         showPicture(offscreen_canvas, matrix, i);
         sleep(5);
     }
