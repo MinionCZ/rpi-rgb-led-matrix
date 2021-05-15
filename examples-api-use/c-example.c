@@ -20,9 +20,6 @@ enum {
     FORMULA2,
     FORMULA3,
     FORMULA4,
-    FORMULA5,
-    KUBA,
-    LOGO,
 };
 int *getPicture(int picture) {
     switch (picture) {
@@ -104,7 +101,7 @@ int main(int argc, char **argv) {
 
     fprintf(stderr, "Size: %dx%d. Hardware gpio mapping: %s\n", width, height, options.hardware_mapping);
 
-    for (int i = FORMULA1; i <= LOGO; i++) {
+    for (int i = FORMULA1; i <= FORMULA4; i++) {
         showPicture(offscreen_canvas, matrix, i);
         sleep(5);
     }
