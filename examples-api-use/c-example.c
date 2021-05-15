@@ -42,7 +42,7 @@ void animatePicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int p
     for (int maxX = 63 * 3; maxX >= 0; maxX -= 3) {
         for (int y = 0; y < 64; y++) {
             for (int x = 63 * 3; x >= maxX; x -= 3) {
-                led_canvas_set_pixel(canvas, x / 3, y, payload[y * 64 * 3 + x * 3], payload[y * 64 * 3 + x * 3 + 1], payload[y * 64 * 3 + x * 3 + 2]);
+                led_canvas_set_pixel(canvas, x / 3, y, payload[y * 64 * 3 + x], payload[y * 64 * 3 + x + 1], payload[y * 64 * 3 + x + 2]);
             }
             for (int x = maxX - 3; x >= 0; x -= 3) {
                 led_canvas_set_pixel(canvas, x / 3, y, 0, 0, 0);
