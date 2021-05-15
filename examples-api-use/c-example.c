@@ -59,7 +59,7 @@ void animatePicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int p
             }
         }
       canvas = led_matrix_swap_on_vsync(matrix, canvas);
-
+      sleep(1);
 
     }
 }
