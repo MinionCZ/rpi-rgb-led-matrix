@@ -37,7 +37,7 @@ void showPicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int pict
     canvas = led_matrix_swap_on_vsync(matrix, canvas);
 }
 
-void animatePicture(int picture, struct LedCanvas *canvas, struct RGBLedMatrix *matrix) {
+void animatePicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int picture) {
     int *payload = getPicture(picture);
     for (int maxX = 63 * 3; maxX >= 0; maxX -= 3) {
         for (int y = 0; y < 64; y++) {
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
     fprintf(stderr, "Size: %dx%d. Hardware gpio mapping: %s\n", width, height, options.hardware_mapping);
 
     for (int i = FORMULA1; i <= FORMULA2; i++) {
-        showPicture(offscreen_canvas, matrix, i);
+        animatePicture(offscreen_canvas, matrix, i);
         sleep(5);
     }
 
