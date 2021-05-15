@@ -14,36 +14,43 @@
 #include "images/logo.h"
 #include "led-matrix-c.h"
 enum {
-    KUBA1,
-    KUBA2,
     FORMULA1,
     FORMULA2,
-    LOGO
 };
 int *getPicture(int picture) {
     switch (picture) {
-        case KUBA1:
-            return (int *) &kuba1[0][0];
-        case KUBA2:
-            return (int *)  &kuba2[0][0];
         case FORMULA1:
-          return (int *)  &formula1[0][0];
+            return (int *)&formula1[0][0];
         case FORMULA2:
-          return (int *)  &formula2[0][0];
-        case LOGO:
-          return (int *)  &logo[0][0];
+            return (int *)&formula2[0][0];
     }
     return NULL;
 }
 
 void showPicture(struct LedCanvas *canvas, struct RGBLedMatrix *matrix, int picture) {
-  int * payload = getPicture(picture);
+    int *payload = getPicture(picture);
     for (int y = 0; y < 64; ++y) {
         for (int x = 0; x < 64; ++x) {
-            led_canvas_set_pixel(canvas, x, y, payload[y * 64 * 3 + x * 3] , payload [y * 64 * 3 + x * 3 + 1], payload[y * 64 * 3 + x * 3 + 2]);
+            led_canvas_set_pixel(canvas, x, y, payload[y * 64 * 3 + x * 3], payload[y * 64 * 3 + x * 3 + 1], payload[y * 64 * 3 + x * 3 + 2]);
         }
     }
     canvas = led_matrix_swap_on_vsync(matrix, canvas);
+}
+
+void animatePicture(int picture, struct LedCanvas *canvas, struct RGBLedMatrix *matrix) {
+    int *payload = getPicture(picture);
+    for (int maxX = 63 * 3; maxX >= 0; maxX -= 3) {
+        for (int y = 0; y < 64; y++) {
+            for (int x = 63 * 3; x >= maxX; x -= 3) {
+                led_canvas_set_pixel(canvas, x, y, payload[y * 64 * 3 + x * 3], payload[y * 64 * 3 + x * 3 + 1], payload[y * 64 * 3 + x * 3 + 2]);
+            }
+            for (int x = maxX - 3; x >= 0; x -= 3) {
+                led_canvas_set_pixel(canvas, x, y, 0, 0, 0);
+            }
+        }
+        canvas = led_matrix_swap_on_vsync(matrix, canvas);
+        usleep(50);
+    }
 }
 
 int main(int argc, char **argv) {
@@ -67,9 +74,9 @@ int main(int argc, char **argv) {
 
     fprintf(stderr, "Size: %dx%d. Hardware gpio mapping: %s\n", width, height, options.hardware_mapping);
 
-    for(int i = FORMULA1; i <= FORMULA2; i++){
-      showPicture(offscreen_canvas, matrix, i);
-      sleep(5);
+    for (int i = FORMULA1; i <= FORMULA2; i++) {
+        animatePicture(i ,offscreen_canvas, matrix);
+        sleep(5);
     }
 
     led_matrix_delete(matrix);
