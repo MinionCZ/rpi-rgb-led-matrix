@@ -13,8 +13,8 @@
 #include "images/formula4.h"
 #include "images/formula5.h"
 #include "images/kuba.h"
-#include "images/logo.h"
 #include "led-matrix-c.h"
+#include "images/logo.h"
 enum {
     FORMULA1,
     FORMULA2,
@@ -22,6 +22,7 @@ enum {
     FORMULA4,
     FORMULA5,
     KUBA,
+    LOGO,
 };
 int *getPicture(int picture) {
     switch (picture) {
@@ -37,6 +38,8 @@ int *getPicture(int picture) {
             return (int *)&formula5[0][0];
             case KUBA:
             return (int *)&kuba[0][0];
+        case LOGO:
+            return (int *)&logo[0][0];
     }
     return NULL;
 }
