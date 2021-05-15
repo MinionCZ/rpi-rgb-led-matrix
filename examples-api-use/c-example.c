@@ -104,7 +104,7 @@ int main(int argc, char **argv) {
 
     fprintf(stderr, "Size: %dx%d. Hardware gpio mapping: %s\n", width, height, options.hardware_mapping);
 
-    for (int i = FORMULA1; i <= KUBA; i++) {
+    for (int i = FORMULA1; i <= LOGO; i++) {
         showPicture(offscreen_canvas, matrix, i);
         sleep(5);
     }
